@@ -3,6 +3,18 @@
 This repository holds documentation related to the team. The flavour of this
 documentation is primarily educational, containing papers, datasheets, style
 guidlines and team member written documentation.
+### Getting Started
+There are three types of satellite related development on the team:
+- Writing code
+- Designing PCB's
+- CAD
+In a perfect world each member would have some level of competency at all three
+and push commits every week. I want to stress this point. The most important
+metric for the team right now is the number of commits that we are pushing.
+Check the issues for the repositories that you are interested in becasue there
+will always be open problems that need to be solved. Don't be afraid to comment
+or ask questions.
+
 ### Uploading Documentation
 We make a distinction between
 internal and external documentation.
@@ -16,6 +28,11 @@ directory in the associated documentation folder. Please name it sensibly and
 don't use spaces or special characters in the title.  For external documentation
 please hyperlink to the document wherever possible.
 
+There should also be a distinction made between project specific documentation
+and documentation here. If the documentation you are writing is development
+related it should go in the docs for the corresponding repo. For example, if
+I was writing documentation about a class for the transceiver, that would go
+in the docs folder of the repo associated with the developent of that class.
 ### Help
 In the event that links to documentation are broke:
 - If the link is to internal documentation in a files directory, it could be
