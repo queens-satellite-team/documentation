@@ -8,6 +8,7 @@ There are three types of satellite related development on the team:
 - Writing code
 - Designing PCB's
 - CAD
+
 In a perfect world each member would have some level of competency at all three
 and push commits every week. I want to stress this point. The most important
 metric for the team right now is the number of commits that we are pushing.
