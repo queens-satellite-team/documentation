@@ -10,3 +10,16 @@ in Adjacent Epochs for Spaceborne Dual-frequency GPS](https://pdf.sciencedirecta
 ### Sun Sensors
 - [An Implementation Method Based on ERS Imaging Mode for Sun Sensor With 1kHz Update Rate and 1" Precision Level](https://www.osapublishing.org/DirectPDFAccess/EED4F8E1-0306-141C-5C83E8003A98B1E4_276369/oe-21-26-32524.pdf?da=1&id=276369&seq=0&mobile=no)
 - [TSL1401CL 128 x 1 Linear Sensory Array With Hold](https://ams.com/documents/20143/36005/TSL1401CL_DS000136_3-00.pdf/8de4cae4-354c-c2c3-8db4-6a132f969a0a)
+### Reaction Wheels
+ - [Maxon EC Motor Website](https://www.maxongroup.com/maxon/view/product/200142) 
+ - [Maxon EC Motor Datasheet](https://www.maxongroup.com/medias/sys_master/root/8841185591326/EN-285.pdf)
+ - [Maxon EC Motor Controller Website](https://www.maxongroup.com/maxon/view/product/control/4-Q-Servokontroller/466023)
+ - [Maxon EC Motor Controller Setup Software Download Link](https://www.maxongroup.com/maxon/view/content/escon-detailsite)
+ - [Maxon EC Motor and Controller Setup Instructions](https://www.maxongroup.co.uk/maxon/view/news/How-to-configure-a-maxon-ESCON-Speed-Controller)
+### Magnetorquers
+
+### Prototyping
+ - [Tutorial for Raspi I2C and SPI Communication](https://learn.sparkfun.com/tutorials/raspberry-pi-spi-and-i2c-tutorial/all)
+ - [Tutorial for Raspi with BNO055](https://cdn-learn.adafruit.com/downloads/pdf/bno055-absolute-orientation-sensor-with-raspberry-pi-and-beaglebone-black.pdf)
+ 
+
