@@ -21,5 +21,8 @@ in Adjacent Epochs for Spaceborne Dual-frequency GPS](https://pdf.sciencedirecta
 ### Prototyping
  - [Tutorial for Raspi I2C and SPI Communication](https://learn.sparkfun.com/tutorials/raspberry-pi-spi-and-i2c-tutorial/all)
  - [Tutorial for Raspi with BNO055](https://cdn-learn.adafruit.com/downloads/pdf/bno055-absolute-orientation-sensor-with-raspberry-pi-and-beaglebone-black.pdf)
+ - [DAC for Raspi to Analog Signal](https://www.maximintegrated.com/en/products/analog/data-converters/analog-to-digital-converters/MAX11300.html/tb_tab2)
+ - [DAC Setup Software](https://www.maximintegrated.com/en/design/software-description.html/swpart=SFW0003260A)
+ - [Instructions for DAC Setup](https://pdfserv.maximintegrated.com/en/an/AN6487.pdf)
  
 
