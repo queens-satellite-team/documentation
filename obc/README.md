@@ -14,11 +14,20 @@ M family of processors. [Arm Holdings](https://en.wikipedia.org/wiki/Arm_Holding
 designs, develops and licenses their processor design to other companies who
 manufacture them. The most common manufacturer of the ARM architecture is
 [STMicroelectronics](https://en.wikipedia.org/wiki/STMicroelectronics). In addition
-to the ARM architecture specification ST offers different peripherals for 
+to the ARM architecture specification, ST offers different peripherals for
 different boards. Hence there is a large family of processors that are manfuactured
 by ST all using a given ARM architecture but with different peripherals. What is
 a peripheral? A broad definition is a device that is connected to a computer
 but is not part of the core architecture.
+
+#### Startup Code
+The startup code provides the reset vector, initial stack pointer value, and a
+symbol for each of the interrupt vectors.
+- [reset vector](https://en.wikipedia.org/wiki/Reset_vector) is the default
+location the CPU goes to find the first instruction it will execute after reset.
+- [initial stack pointer value]() is a value at the initial address of the stack.
+- [interrupt vector]() are addresses that inform the interrupt handler as to
+where to find the interrupt service routine (ISR).
 
 ### Development Boards
 At the time of writing, I am developing using a [STM32F446 Nucleo-64](https://www.digikey.ca/en/products/detail/stmicroelectronics/NUCLEO-F446RE/5347712?s=N4IgTCBcDaIHIFUDCAZAogeQLQDEAseAbAEpogC6AvkA) development
@@ -50,7 +59,11 @@ and `startup`. From `readme.txt` in `samples` directory:
 
 Startup contains assembly code needed to
 ### Common Acronyms
-See `acronyms.md`
+There are lots of acronyms in embedded systems, for an incomplete catalogue
+see `acronyms.md`.
+### Books
+- [The Designer's Guide to the Cortex-M Processor Family: A Tutorial Approach](https://www.amazon.ca/Designers-Guide-Cortex-M-Processor-Family/dp/0080982964/ref=sr_1_1?dchild=1&keywords=The+Designer%27s+Guide+to+the+Cortex-m+Processor+Family.+A+Tutorial+Approach&qid=1595690529&sr=8-1)
 ### Resources
 - [Arm Assembler Language Guide](http://www.keil.com/support/man/docs/armasm/armasm_deb1353593789871.htm)
 - [CMSIS Github](https://github.com/ARM-software/CMSIS_5)
+- [HAL Documentation](https://www.st.com/resource/en/user_manual/dm00105879-description-of-stm32f4-hal-and-ll-drivers-stmicroelectronics.pdf)
