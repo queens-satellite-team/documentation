@@ -16,31 +16,13 @@ Let's talk about each one.
     frying a $6000 transceiver board.
   * We'd like to help you learn. No previous space related or serious technical
     knowledge is required.
-  * By using Github, all of our work is nicely synchronised and it is easy to
-    offload tasks. If you are working on something and have to stop, push your
-    most recent work and notify the relevant team lead you need to offload the
-    task.
-
+  * By using [Github](https://guides.github.com/activities/hello-world/), all of our work is nicely synchronised and it is easy to
+    offload tasks.
 Alot of these fears come from thinking that our design team is going to be like
 working for a company. It isn't. It is more like an
 [open source](https://en.wikipedia.org/wiki/Open_source) project. Our team has
 a clear purpose:
   > Launch a satellite designed, fabricated and validated by undergraduate/graduate students into space.
-
-If this excites you and you are willing to learn, you are a great fit for the
-team.  When determinng what you want to work on, the first choice is:
-- Do I want to program?
-- Do I want to design circuit boards?
-- Do I want to do CAD?
-
-After you decide that you can take a look through the [repositories](https://github.com/queens-satellite-team)
-and associated issues ([here](https://github.com/queens-satellite-team/moc-sat/issues) are the MocSat issues).
-Once you have found a project or issue that interests you:
-  - If you know how to fix the issue, do so and make a pull request to be
-    reviewed by the team lead.
-  - Post in the [new members](https://github.com/orgs/queens-satellite-team/teams/new-members)
-    team discussion with what your technical interest is (code, PCB design, CAD)
-    and sub-system. The team lead will then be able to give you more information.
 
 ### The Competition
 In order to compete in the CSDC we are building a [3 Unit Cube-Satellite](https://www.asc-csa.gc.ca/eng/satellites/cubesat/what-is-a-cubesat.asp).
@@ -78,6 +60,21 @@ The satellite is composed of sub-systems. The sub-systems are:
 
 Sub-systems are managed by a sub-system team lead. Each sub-system requires
 electrical, computer and mechanical engineering.
+
+# Joining The Team
+When determining what you want to work on, the first choice is:
+- Do I want to program?
+- Do I want to design circuit boards?
+- Do I want to do CAD?
+
+After you decide that, you can take a look through the [repositories](https://github.com/queens-satellite-team)
+and associated issues ([here](https://github.com/queens-satellite-team/moc-sat/issues) are the MocSat issues).
+Once you have found a project or issue that interests you:
+  - Post in the [new members](https://github.com/orgs/queens-satellite-team/teams/new-members)
+    team discussion with what your technical interest is (code, PCB design, CAD)
+    and sub-system. The team lead will then be able to give you more information.
+  - If you have previous experience and know how to use GitHub, fix the issue
+    and make a pull request to be reviewed by the relevant team lead.
 
 ### FAQ
   * "I am in first year, I will join next year when I have learned more."

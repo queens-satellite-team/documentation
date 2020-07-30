@@ -1,15 +1,17 @@
-### Overview
+### Documentation Overview
 The flavour of the documentation is primarily educational. It contains papers,
 datasheets, style guidelines and team written documentation. The documentation
-is organized as follows:
+is organized roughly by sub-system as follows:
 - `adcs`
   - **Attitude Determination and Control System**: How
 the satellite can determine its orientation in space and reorient itself if
 necessary.
   - *Topics*: Reaction wheels, IMU's, GPS, magnetorquers.
+  - *Common Disciplines*: Apple, Mech, Electrical, Comp, Eng Phys
 - `comms`
   - **Communication**: How the satellite communicates with the ground station.
   - *Topics*: Transceivers, antenna design and simulation.
+  - *Common Disciplines*: Apple, Electrical, Comp, Eng Phys
 - `general`
   - **General team and space related documentation**: Contains things such
 as the competition rules and the critical design review.
@@ -17,10 +19,16 @@ as the competition rules and the critical design review.
   - **On Board Computer**: The main computer which organises and executes
 tasks on the satellite.
   - *Topics:* Embedded system development, ARM processors, RTOS, STM32.
+  - *Common Disciplines*: Apple, Electrical, Computer, Eng Phys
 - `power`
   - **Electronic Power System**: How the satellite stores power from the solar
   panels in batteries and distributes it to the other subsystems.
   - *Topics:* Batteries, solar panels, PCB design.
+  - *Common Disciplines*: Apple, Electrical, Computer, Eng Phys
+- `structure`
+  - **Structure**: Information about CubeSat structure as well as testing
+  apparatus.
+  - *Common Disciplines*: Mech, Apple, Eng Phys
 
 ### Uploading Documentation
 We make a distinction between
