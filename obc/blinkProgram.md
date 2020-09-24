@@ -2,9 +2,9 @@
 ## Obtaining and Setting up Software
 To be able to interact with the MCU the software STM32 and Atollic are required.
 #### Atollic
-Atollic will be the IDE used in this project which can be obtained from this **link.** Follow all the sign-up requirements to download the software and nothing else should be necessary.
+Atollic will be the IDE used in this project which can be obtained from [this link](https://atollic.com/resources/download/ "Download"). Follow all the sign-up requirements to download the software and nothing else should be necessary.
 #### STM32
-STM32 is the piece of software that configures the pins to on an MCU. To download this software visit this **link.** The download should be a zipped file containing the program “SetupSTM32CubeMX-5.5.0.exe”. Run the program and follow all setup prompts.
+STM32 is the piece of software that configures the pins to on an MCU. To download this software visit [this link](https://www.st.com/content/st_com/en/products/development-tools/software-development-tools/stm32-software-development-tools/stm32-configurators-and-code-generators/stm32cubemx.html "Download"). The download should be a zipped file containing the program “SetupSTM32CubeMX-5.5.0.exe”. Run the program and follow all setup prompts.
 
 ![Cap1](https://user-images.githubusercontent.com/60119461/94093690-d58ab280-fdeb-11ea-8142-550277b76909.PNG)
 
@@ -31,7 +31,7 @@ With the code now visible, it is time to edit it.  For this specific program onl
 
 ![Cap7](https://user-images.githubusercontent.com/60119461/94093713-e2a7a180-fdeb-11ea-8f67-f436b9db9658.PNG)
 
-HAL_GPIO_TogglePin() will be used to toggle the voltage from 0V to 3.3V and as a result turning the LED on and off. The GPIOx is essentially the family of the pin, and the GPIO_Pin is the specific pin in the family. For this function to work the pin must be the pin selected to be the GPIO_Output pin during the STM32 setup. For example, if I wanted to toggle the pin (29)-PB10 my function would look like this: HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_10), where “B” is the family name and “10” is the specific pin in that family. If pin 29 was selected, the code in the example can be used verbatim. The general form for this would look like this HAL_GPIO_TogglePin(GPIO**”family”**, GPIO_PIN_**“Pin Number”**).
+HAL_GPIO_TogglePin() will be used to toggle the voltage from 0V to 3.3V and as a result turning the LED on and off. The GPIOx is essentially the family of the pin, and the GPIO_Pin is the specific pin in the family. For this function to work the pin must be the pin selected to be the GPIO_Output pin during the STM32 setup. For example, if I wanted to toggle the pin (29)-PB10 my function would look like this: HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_10), where “B” is the family name and “10” is the specific pin in that family. If pin 29 was selected, the code in the example can be used verbatim. The general form for this would look like this HAL_GPIO_TogglePin(GPIO”Family Name”, GPIO_PIN_“Pin Number”).
 
 ![Cap8](https://user-images.githubusercontent.com/60119461/94093714-e2a7a180-fdeb-11ea-90f9-ae439fa3eda4.PNG)
 
@@ -41,7 +41,7 @@ For a continuous blinking, both these functions must be placed within the while 
 
 ![Cap9](https://user-images.githubusercontent.com/60119461/94093715-e3403800-fdeb-11ea-903f-3614c8c485ff.PNG)
 
-More Information on functions available in this IDE can be found **here.**'
+More Information on functions available in this IDE can be found [here](https://www.st.com/content/ccc/resource/technical/document/user_manual/2f/71/ba/b8/75/54/47/cf/DM00105879.pdf/files/DM00105879.pdf/jcr:content/translations/en.DM00105879.pdf "Download").
 
 ## Wiring
 The components needed for the hardware portion of the project are an LED, two 0.1-0.2 microfarad capacitors, 9 jumper wires, a 390ohm resistor, a breadboard, an ST-Link, and the MCU. First, the ST-Link must be correctly wired. There should be 4 wires attached to the SWCLK, SWDI, GND, and 3.3V pins on the device.
