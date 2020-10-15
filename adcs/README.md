@@ -17,6 +17,7 @@ in Adjacent Epochs for Spaceborne Dual-frequency GPS](https://pdf.sciencedirecta
 ## Reaction Wheels
  - [Maxon EC Motor Website](https://www.maxongroup.com/maxon/view/product/200142) 
  - [Maxon EC Motor Datasheet](https://www.maxongroup.com/medias/sys_master/root/8841185591326/EN-285.pdf)
+ - [Maxon EC Motor Controller](https://www.maxongroup.nl/medias/sys_master/8815105572894.pdf)
  - [Maxon EC Motor Controller Website](https://www.maxongroup.com/maxon/view/product/control/4-Q-Servokontroller/466023)
  - [Maxon EC Motor Controller Setup Software Download Link](https://www.maxongroup.com/maxon/view/content/escon-detailsite)
  - [Maxon EC Motor and Controller Setup Instructions](https://www.maxongroup.co.uk/maxon/view/news/How-to-configure-a-maxon-ESCON-Speed-Controller)
