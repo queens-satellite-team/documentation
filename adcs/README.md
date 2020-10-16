@@ -14,7 +14,8 @@ in Adjacent Epochs for Spaceborne Dual-frequency GPS](https://pdf.sciencedirecta
 ### Previous Model Sensors
  - [An Implementation Method Based on ERS Imaging Mode for Sun Sensor With 1kHz Update Rate and 1" Precision Level](https://www.osapublishing.org/DirectPDFAccess/EED4F8E1-0306-141C-5C83E8003A98B1E4_276369/oe-21-26-32524.pdf?da=1&id=276369&seq=0&mobile=no)
  - [TSL1401CL 128 x 1 Linear Sensory Array With Hold](https://ams.com/documents/20143/36005/TSL1401CL_DS000136_3-00.pdf/8de4cae4-354c-c2c3-8db4-6a132f969a0a)
-##IRES Sensors
+
+## IRES Sensors
  - [Preconfigured Adafruit Array (for moc sat)](https://www.adafruit.com/product/3538)
  - [Adafruit Sensor for Prototyping](https://www.adafruit.com/product/157)
 
