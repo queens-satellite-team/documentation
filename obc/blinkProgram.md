@@ -89,24 +89,27 @@ If everything was done correctly the LED light should be blinking continuously.
 
 ### What is it?
 
+![image1](https://user-images.githubusercontent.com/60119461/97533841-5ad72900-198f-11eb-9608-911bfeee7988.png)
+
 I2C communication involves a connection where (usually 1) master is connected to 1 or more slaves.  The Serial Data (SDA) is the line for the master and slave to share information between one another. The SCL (Serial Clock) is the line which sends the clock signal which essentially tells each of the devices when they should be sending and receiving data from the SDA line.
 
-IMG 1
+![image1.5](https://user-images.githubusercontent.com/60119461/97534184-f23c7c00-198f-11eb-9402-a572ac511b48.png)
 
 Expanding on the first diagram, this is a more complex view of how I2C works on a circuit schematic level. One key thing to note about this picture is that there are multiple slaves connected to a single master. When analyzing this, we can understand that each slave and master are all connected to the same SDA line SCL line. The VDD and Rp resistors are used as a pull-up resistor, which basically pulls the circuit up to the voltage VDD, the reasons for this will be discussed below.
  
- IMG 2
-
+![image2](https://user-images.githubusercontent.com/60119461/97534233-041e1f00-1990-11eb-94bc-25f2f94cc4f4.png)
 
 Zooming in even further we get this schematic. This one depicts the relationship between a single slave and master on the SDA line. The pull up resistor prevents what is called a hanging node since by default the switches are closed. If there is no voltage and no ground, the circuit will have a hanging node meaning the device will get strange readings. To fix this we place a pull up resistor which brings the connected circuit up to a specific voltage when the circuit is open. This is because there will be no current passing through the resistor when it is open because the circuit is not complete making both node before and after the resistor the same voltage. Another way of looking at this is that since there is no voltage drop across the resistor and we have an applied voltage to the circuit, both nodes must be the same voltage.
 
-IMG 3&4
+![image3](https://user-images.githubusercontent.com/60119461/97534267-113b0e00-1990-11eb-8f4b-052619762f42.png)
+![image4](https://user-images.githubusercontent.com/60119461/97534286-1b5d0c80-1990-11eb-8cce-8e13d5a5a4d0.png)
+
 
 The circuit is essentially able to send information through opening and closing the switch that is just above ground. Slave and Master don’t directly change the signal/ Voltage on the line, they open and close a switch by sending a voltage to it (the switch is a simplification, it is usually replaced by a transistor like a MOSFET which will act as a closed switch when voltage is applied and an open one when voltage is no longer applied.) This allows them to send a series of high and low signals which can be then interpreted as information.
 
 ### How Data is Transmitted
 
-IMG 5
+![image5](https://user-images.githubusercontent.com/60119461/97534363-3b8ccb80-1990-11eb-8010-614a937511da.png)
 
 This is what a series of those Highs and Lows would look like on the SDA line as this represents the voltage across the SDA line and the SCL line and essentially shows how data is transferred between a slave and a master. Breaking down the diagram from left to right, first the start condition is that Serial Data line (SDL) is pulled down then the Serial Clock Line (SCL) is pulled down (which means they have a LOW value or they are both grounded).
 
@@ -120,7 +123,7 @@ The SCL line is just telling the slave to “sample” the data being sent which
 
 *Note: This process only works if there is ONE register, multiple register will be explored below.*
 
-IMG 6
+![image6](https://user-images.githubusercontent.com/60119461/97534402-4fd0c880-1990-11eb-837a-310f6e756d5b.png)
 
 
 Some devices (like the one we will be working with in the application section) will have multiple registers (Little pockets 8-bits of memory within the device.)The process of reading and writing to the salve will be a little different when dealing with this case.
@@ -160,33 +163,37 @@ Similar to what we saw in the section of this document explaining what I2C is, w
 
 The components needed will be 10 jumper wires, a breadboard, an ST-Link, the MCU, and the BNO055. First, the ST-Link must be correctly wired. There should be 4 wires attached to the SWCLK, SWDI, GND, and 3.3V pins on the device.
 
-IMG 7
+![image7](https://user-images.githubusercontent.com/60119461/97534509-7f7fd080-1990-11eb-9fbc-61a3ace90ab5.png)
+
 
 Next, the MCU should be placed along the middle of the breadboard at the top. The jumper wires connected to the 3.3V and GND must be connected to the power and ground busses on the breadboard respectively. The SWIDO wire should be connected to pin 46 and the SWCLK wire should be connected to pin 49 on the MCU.
 
-IMG 8
+![image8](https://user-images.githubusercontent.com/60119461/97534533-8c042900-1990-11eb-82e1-7ba313ba25d5.png)
 
 
 Place one wire on the ground bus and one on the power bus. Connect the wire on the power bus to the 64 pin and the one on the ground bus to the 63 pin.
 
-IMG 9
+![image9](https://user-images.githubusercontent.com/60119461/97534565-9a524500-1990-11eb-86fd-cfa787e30119.png)
 
 
 To power the BNO055 connect a jumper wire from it’s GND pin to the ground bus and it’s 3vo pin to the power bus.
 
-IMG 10
+![image10](https://user-images.githubusercontent.com/60119461/97534629-b5bd5000-1990-11eb-82a4-f3b73ab48655.png)
+
 
 Now, to establish I2C communication we must connect the SDA and SCL of the two devices. Since in STM32 we established our SDA to be pin 62 MCU we connect that to the SDA pin on the BNO055. Similarly, since we established our SCL to be pin 61 MCU we connect that to the SCL pin on the BNO055. Normally we would also need to calculate a pull-up resistor and place it on the SCL and SDA bus so they would not become hanging. Thankfully, the BNO055 device has built in pull-up resistors so the hardware portion of this project should be relatively simple.
 
-IMG 11 &12
+![image11](https://user-images.githubusercontent.com/60119461/97534739-e56c5800-1990-11eb-8f01-5d139fa66550.png)
+
+![image12](https://user-images.githubusercontent.com/60119461/97534752-eac9a280-1990-11eb-94a3-1acea288fae5.png)
 
 Since the bread board has a break in the power and ground buses, connect the break of the 2 buses. (Black and green wires in the picture).
 
-IMG 13
+![image13](https://user-images.githubusercontent.com/60119461/97534783-f917be80-1990-11eb-8729-d6eb3176ba42.png)
 
 The result should look like the image below.
 
-IMG 14
+![image14](https://user-images.githubusercontent.com/60119461/97534824-0a60cb00-1991-11eb-823e-ff1333da58c7.png)
 
 
 
@@ -194,32 +201,35 @@ IMG 14
 
 First what we need to do is find out what registers we will be writing to. After reading the datasheet it becomes obvious the registers needed will be:
 
-IMG 15
+![image15](https://user-images.githubusercontent.com/60119461/97534861-18aee700-1991-11eb-9ca5-dfa9c4757835.png)
 
 PWR_MODE has the register address of 0x3E and controls the state the BNO055 device is sensor data.
 
-IMG 16
+![image16](https://user-images.githubusercontent.com/60119461/97534898-29f7f380-1991-11eb-8179-de8e362d1a96.png)
 
 
 This is a list of all possible modes the device can be in, normal mode turns all sensors on, low power just has the accelerometer on and turns on after 5 seconds of no movement, and suspend mode where no sensors are on. The Reg Value just means what need to be written to the register in order to place it in that mode. Similarly, if that value is read from that address it means the device is in that mode. The x’s are bits that do not matter if they are 0’s or 1’s, all that matter are the non-x bits. For example, if I wanted to place the device into the Low Power Mode, I could write 00000001 or 00100001 or 11010101 or 11111101. If the last 2 bits stay 01 then it stays in Low Power Mode. Now potentially, the device could be using the other bits for something else so instead of directly writing a value to it, the better idea would be to read the current value within the address, use bit manipulation to get it into the xxxxxx01 form of Low Power Mode, and then return the new data to the address. We will discuss more about how to do bit manipulation later.
 
-IMG 17
+![image17](https://user-images.githubusercontent.com/60119461/97534930-37ad7900-1991-11eb-83b3-91d067606256.png)
 
 OPR_MODE has the register address of 0x3D and is another register which controls which sensors will be in use but unlike PWR_MODE, it will not change unless the user does it themselves.
 
-IMG 18 & 19
+![image18](https://user-images.githubusercontent.com/60119461/97534958-41cf7780-1991-11eb-845e-f625cbe47d57.png)
+
+![image19](https://user-images.githubusercontent.com/60119461/97534995-514ec080-1991-11eb-9823-de94c91fff05.png)
+
 
 These two tables show which mode turns on which sensor and what the data in the register needs to be for it to be in that operating mode.
 
-IMG 20
+![image20](https://user-images.githubusercontent.com/60119461/97535045-64fa2700-1991-11eb-8f8e-0a96b8ae21d2.png)
 
 TEMP has the register address of 0x34 and is the place we will read our temperature value from.
 
-IMG 21
+![image21](https://user-images.githubusercontent.com/60119461/97535076-6fb4bc00-1991-11eb-9661-9340c7f9d300.png)
 
 UNIT_SEL has a register address of 0x3B and controls the units the data will be outputted in. This register doesn’t just hold the data for temperature units, but all other sensors too. Due to this we will only focus on changing the 5th bit. If the 5th bit is 0 it will display data for Celsius, and if it is 1 it will display data for Fahrenheit.
 
-IMG 22
+![image22](https://user-images.githubusercontent.com/60119461/97535103-7a6f5100-1991-11eb-8b90-f5223c647e7e.png)
 
 This just means what we must divide our temperature value by to get the correct value. If its in Celsius it’s Temperature/1 aka just itself and if its in Fahrenheit, its Temperature/2. Note: LSB means Least Significant Bit and is the last bit in the data transmission for example in 10101111**0** the very last zero is the least significant bit.
 
@@ -351,25 +361,27 @@ Following the same line of thinking for the other registers leads to the code be
 Since there is no easy way to print data in SMT32 we will have to follow the data within the debugger.
 
 
-IMG 23
+![image23](https://user-images.githubusercontent.com/60119461/97535338-e2259c00-1991-11eb-8407-cf9984b6f3f1.PNG)
 
 Now, within the debug screen, in the bottom left corner, you should be able to still see the code you have written. Scroll down till reach the portion of the code which receives the temperature and just above it double click. This adds what is called a “break” and will allow us to skip to the code where we wish to actually look at what is happening with the data.
 
-IMG 24
+![image24](https://user-images.githubusercontent.com/60119461/97535357-e8b41380-1991-11eb-80ef-376e31cf5c44.PNG)
+
 
 
 At the top, click the “continue” button till you reach the break point.
 
-IMG 25
+![image25](https://user-images.githubusercontent.com/60119461/97535425-03868800-1992-11eb-8383-e12b692c618d.PNG)
+
 
 
 After, click the “step over” button to progress in the code line by line while cautiously monitoring the variables window in the top center for change.
 
-IMG 26
-
+![image26](https://user-images.githubusercontent.com/60119461/97535451-0b462c80-1992-11eb-8365-e9cc506a7e67.PNG)
 
 The value read should be close to this, again, remember this is the operating temperature of the device and not the temperature of the room.
 
+![image27](https://user-images.githubusercontent.com/60119461/97535568-36308080-1992-11eb-8d25-6bd80a028a4c.png)
 
 
 
