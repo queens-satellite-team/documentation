@@ -60,26 +60,7 @@ PIC HERE 9
 
 If you are reading this documentation then I will assume you understand circuit design and will not go over the basic details of the design, but rather just what will be unique to this build. Each LED will be connected to one of the 3 GPIO outputs initialized and then connected to ground. One lead of the button will be connected to ground while the other will be connected to the GPIO_EXTI. The product should look like the image below.
 
-MORE ABOUT THE STMCUBE32 SETUP
-
-**Make one more function called “startInteruptTask” and make it have a higher priority than the tasks above(SHOW PIC).**
-
-***TALK ABOUT HOW TO SETUP THE INTERUPT ON BOARD AND IN THE CONFIG**
-
-**IN CONFIG(NOT DONE)**
-
-**ON BOARD(NOT DONE)**
-
-**To trigger the intrupt we will use the external signal of a button. For this we will initialized it on the board (SHOW PIC) and then**
-
-**CODING**
-
-Functions used to get the ISR to work:  
-[**osThreadFlagsSet**](https://www.keil.com/pack/doc/cmsis/RTOS2/html/group__CMSIS__RTOS__ThreadFlagsMgmt.html#ga6f89ef9caded1d9963c7b12b0f6412c9)
-
-[**osThreadFlagsWait**](https://www.keil.com/pack/doc/cmsis/RTOS2/html/group__CMSIS__RTOS__ThreadFlagsMgmt.html#gac11542ad6300b600f872fc96e340ec2b)
-
-flags= random value I found online, 0x0002U
+PIC 10 OF CIRCUIT HERE (YOU HAVENT TAKEN THE PHOTO YET)
 
 ## CODE - RTOS
 
@@ -87,10 +68,9 @@ Almost all the setup for the RTos part of this project has been done in the CUBE
 
 ## CODE - INTERUPT
 
-**The entire method of the implementation of the interrupt involves a thread with the highest possible priority  ( startInteruptTask() )and an interrupt ( HAL_GPIO_EXTI_Callback() ). What happens is that the RTOS runs normally but the startInteruptTask thread is suspended using the function osThreadFlagsWait() which will suspend any thread until a signal has been sent. Within interrupt ( HAL_GPIO_EXTI_Callback() ) there will be an if statement that will execute when the GPIO_Output button from the initial STM32 setup is pressed. What happens when that if statement is executed is the function osThreadFlagsSet() is used and sends the signal that the startInteruptTask thread was waiting for which in turn activates it. After the startInteruptTask is run once it will run back into the osThreadFlagsWait() and be suspended until the interrupt(aka the button) is activated again. The code provided below showcases what is explained above.
+**The entire method of the implementation of the interrupt involves a thread with the highest possible priority  ( startInteruptTask() )and an interrupt ( HAL_GPIO_EXTI_Callback() ). What happens is that the RTOS runs normally but the startInteruptTask thread is suspended using the function osThreadFlagsWait() which will suspend any thread until a signal has been sent. Within interrupt ( HAL_GPIO_EXTI_Callback() ) there will be an if statement that will execute when the GPIO_Output button from the initial STM32 setup is pressed. What happens when that if statement is executed is the function osThreadFlagsSet() is used and sends the signal that the startInteruptTask thread was waiting for which in turn activates it. After the startInteruptTask is run once it will run back into the osThreadFlagsWait() and be suspended until the interrupt(aka the button) is activated again. The flag will pass as an arguement to both functions will be 0x0002U. The code provided below showcases what is explained above.
 
-**NOTE:**
+**NOTE: Why does it seem like multiple threads are running at the same time?**
 
-**Why does it seem like multiple threads are running at the same time?**
 
-**I did some tests and they are not. My best guess is that the tasks are suspended and then put into a queue. Once the higher priority thread finishes or encounters an OSdelay() the lower priority function will continue. The fraction of a second interruption of the lower priority function is un able to be noticed by the human eye so it seems as if there are multiple threads running at once. This delay will most likely become more prominent (and more useful) when implantation of functions that require a larger time consumption.**
+I did some tests and they are not. My best guess is that the tasks are suspended and then put into a queue. Once the higher priority thread finishes or encounters an OSdelay() the lower priority function will continue. The fraction of a second interruption of the lower priority function is un able to be noticed by the human eye so it seems as if there are multiple threads running at once. This delay will most likely become more prominent (and more useful) when implantation of functions that require a larger time consumption.
