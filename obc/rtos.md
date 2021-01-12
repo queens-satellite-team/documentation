@@ -12,7 +12,7 @@ RTos stands for Real time operating system and basically manages what function t
 In addition to this we will need to handle function calls that are event triggered (ex. button pressed) rather than time triggered, to do this we will use the concept of interrupts. There are 2 ways to make an interrupt, the first way is to have the MCU constantly check if the function has been called but this is inefficient. The other, more efficient way is to activate when an electrical signal is received. The MCU does this by using a nested vector interrupt control (NVIC). While that sounds long and complicated, its simple once you figure out what it does. The NVIC takes in an electrical signal from a GPIO output pin on the MCU and then matches the pin number to a table of functions called interrupt service routines (ISR). It would look something like this:  
 
 
-PIC HERE 1
+![image1](https://user-images.githubusercontent.com/60119461/104344572-51a82380-54cb-11eb-982b-ff3fe18b6f30.PNG)
 
 When the NVIC calls one of theses functions, it basically tells the CPU to stop running all other tasks and run that instead.
 
@@ -22,23 +22,23 @@ The project that will be created using the concepts above will be a circuit cons
 
 First open CubeMX and find the MCU you will be working with. If you are unfamiliar with the software, please watch a tutorial before continuing with this documentation or refer to the blinkProgram documentation. From there click on the “Middleware” drop down menu and then FREERTOS. 
 
-PIC HERE 2
+![image2](https://user-images.githubusercontent.com/60119461/104344877-af3c7000-54cb-11eb-9d8c-be0acb1f0950.png)
 
 Click the Interface drop down menu and select CMSIS_V2
 
-PIC HERE 3
+![image3](https://user-images.githubusercontent.com/60119461/104344912-ba8f9b80-54cb-11eb-9bf6-3fbc6d0fd418.png)
 
 From there click on “Tasks and Queues”. This is the place we will be impleneting our priotiy based functions. You should have a defaultTask currently present.
 
-PIC HERE 4
+![image4](https://user-images.githubusercontent.com/60119461/104344957-c713f400-54cb-11eb-8054-d3f2b7efbc5e.png)
 
 Click on defaultTask and a menu should pop up. For this project we will only concern ourselves with the name of the task (Task Name), and the priority it has relative to the other tasks (Priority.) Rename the function to “blink1” and hit OK.
 
-PIC HERE 5
+![image5](https://user-images.githubusercontent.com/60119461/104344973-cbd8a800-54cb-11eb-82b8-361b01bf5beb.png)
 
 Now, the whole point of an RTos is the manage tasks based off their priority so to actually utilize RTos we will need to add more tasks. To do this click Add and the same menu should pop up from before. Change the Task Name to blink2 and the Priority to be osPriorityBelowNormal, which will cause it to have a lower priority realitive to our original blink1 task.
 
-PIC HERE 6
+![image6](https://user-images.githubusercontent.com/60119461/104345005-d3984c80-54cb-11eb-8cb6-cef56f06ea0a.png)
 
 Now before we continue there is a problem with the timer. Both FREERTOS and the HAL functions use the SysTick clock. To fix this, go to “System Core” and click “SYS”. From there click the Timebase Source drop down menu and **change SysTick to TIM1 and check off Debug Serial Wire.**
 
@@ -46,15 +46,15 @@ Now before we continue there is a problem with the timer. Both FREERTOS and the 
 
 For this interrupt the external signal of a button will be used. First, set one of these pins to a GPIO_EXTI, for this example we will be using pin-62 i.e. PB9.
 
-PIC HERE 7
+![image7](https://user-images.githubusercontent.com/60119461/104345027-dd21b480-54cb-11eb-9938-f757d246e412.png)
 
 Next, got to the NVIC tab on the left and check the box labeled “EXTI line 4 to 15 interrupts”.
 
-PIC HERE 8
+![image8](https://user-images.githubusercontent.com/60119461/104345058-e6128600-54cb-11eb-8e04-fd70d3778a8b.png)
 
 Go to the GPIO tab on the left and then select the pin which was changed to the GPIO_EXTI, which in this case will be PB9, and change the GPIO mode to “External Interrupt Mode with Rising edge trigger detection” which should trigger the interrupt only when the button is initially pressed. In addition to this, select “Pull-down” in the GPIO Pull-up/Pull-down drop down menu to ensure that our circuit will only activate the interrupt when the button is pressed and will see ground otherwise.
 
-PIC HERE 9
+![image9](https://user-images.githubusercontent.com/60119461/104345091-ef035780-54cb-11eb-9b5c-df338fe7d419.png)
 
 ## **Circuit**
 
