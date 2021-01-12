@@ -60,17 +60,69 @@ Go to the GPIO tab on the left and then select the pin which was changed to the 
 
 If you are reading this documentation then I will assume you understand circuit design and will not go over the basic details of the design, but rather just what will be unique to this build. Each LED will be connected to one of the 3 GPIO outputs initialized and then connected to ground. One lead of the button will be connected to ground while the other will be connected to the GPIO_EXTI. The product should look like the image below.
 
-PIC 10 OF CIRCUIT HERE (YOU HAVENT TAKEN THE PHOTO YET)
+![image10](https://user-images.githubusercontent.com/60119461/104348096-51aa2280-54cf-11eb-8cdc-be707ec2e244.jpg)
 
 ## CODE - RTOS
 
 Almost all the setup for the RTos part of this project has been done in the CUBEMX initialization. All that needs to be done now is to outline what you would like each thread to do. For this implementation we will have Startblink1() trigger one of the GPIO outputs (which will in turn trigger the corresponding LED) and Startblink2() trigger another one of the GPIO outputs. To make sure the LEDs are flashing at different frequencies a function called osDelay() will be implemented that does the job of delaying the thread it is called in by the number of milliseconds entered into the parameter. Finally, have the startInteruptTask()thread toggle the final LED. Since we will be using startInteruptTask() as the thread that will execute when the interrupt is triggered it will need to be modified in the Interrupt Section.
 
+    void Startblink1(void *argument)
+    {
+      /* USER CODE BEGIN 5 */
+      /* Infinite loop */
+      for(;;)
+      {
+    	  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_6);
+        osDelay(600);
+      }
+      /* USER CODE END 5 */
+    }
+
+    void Startblink2(void *argument)
+    {
+      /* USER CODE BEGIN Startblink2 */
+      /* Infinite loop */
+      for(;;)
+      {
+    	  HAL_GPIO_TogglePin(GPIOB, GPIO_PIN_1);
+        osDelay(500);
+      }
+      /* USER CODE END Startblink2 */
+    }
+
 ## CODE - INTERUPT
 
 **The entire method of the implementation of the interrupt involves a thread with the highest possible priority  ( startInteruptTask() )and an interrupt ( HAL_GPIO_EXTI_Callback() ). What happens is that the RTOS runs normally but the startInteruptTask thread is suspended using the function osThreadFlagsWait() which will suspend any thread until a signal has been sent. Within interrupt ( HAL_GPIO_EXTI_Callback() ) there will be an if statement that will execute when the GPIO_Output button from the initial STM32 setup is pressed. What happens when that if statement is executed is the function osThreadFlagsSet() is used and sends the signal that the startInteruptTask thread was waiting for which in turn activates it. After the startInteruptTask is run once it will run back into the osThreadFlagsWait() and be suspended until the interrupt(aka the button) is activated again. The flag will pass as an arguement to both functions will be 0x0002U. The code provided below showcases what is explained above.
 
+    /* USER CODE BEGIN 4 */
+    	void HAL_GPIO_EXTI_Callback( uint16_t GPIO_Pin)
+    	{
+    		if ( GPIO_Pin == GPIO_PIN_9)
+    		{
+    			osThreadFlagsSet(interruptTaskHandle,0x00000001U);
+    		}
+    		else __NOP();
+    	}
+    
+    
+    /* USER CODE END 4 */
+    
+    
+    void StartInterruptTask(void *argument)
+    {
+      /* USER CODE BEGIN StartInterruptTask */
+      /* Infinite loop */
+    
+    	for(;;)
+    	{
+    		osThreadFlagsWait(0x00000001U,osFlagsWaitAny,osWaitForever);
+    		HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_3);
+    
+    	}
+      /* USER CODE END StartInterruptTask */
+    }
+
 **NOTE: Why does it seem like multiple threads are running at the same time?**
 
 
-I did some tests and they are not. My best guess is that the tasks are suspended and then put into a queue. Once the higher priority thread finishes or encounters an OSdelay() the lower priority function will continue. The fraction of a second interruption of the lower priority function is un able to be noticed by the human eye so it seems as if there are multiple threads running at once. This delay will most likely become more prominent (and more useful) when implantation of functions that require a larger time consumption.
+I did some tests and they are not. My best guess is that the tasks are suspended and then put into a queue. Once the higher priority thread finishes or encounters an osDelay() the lower priority function will continue. The fraction of a second interruption of the lower priority function is un able to be noticed by the human eye so it seems as if there are multiple threads running at once. This delay will most likely become more prominent (and more useful) when implantation of functions that require a larger time consumption.
