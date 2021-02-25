@@ -1,7 +1,7 @@
 # Index
 This folder contains relevant datasheet for the sun sensors currently in development for the CAN-SBX balloon project, and which will later be used for the full satellite. The following is a description of each file, and relevant info on the part and it's uses.
 
-### BOB-09056_MuxBreakout.pdf
+### <s>BOB-09056_MuxBreakout.pdf</s>
   * Basic description of the analog multiplexer breakout board.
   * Will be used to select which photodiode should be read by the satellite. Greatly reduces number of pins required for measurement readings.
 
@@ -21,7 +21,7 @@ This folder contains relevant datasheet for the sun sensors currently in develop
   * Full datasheet of the 555 timer.
   * Used as an oscillator in a negative voltage generator. The negative voltage is required to provide symmetric power to the opamp.
 
-### LTR-323DB.pdf
+### <s>LTR-323DB.pdf</s>
   * Full datasheet of the photodiode.
   * Note, that this photodiode is no longer being used for development.
 
