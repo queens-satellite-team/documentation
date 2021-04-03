@@ -1,11 +1,11 @@
 # Index
 This folder contains relevant datasheet for the sun sensors currently in development for the CAN-SBX balloon project, and which will later be used for the full satellite. The following is a description of each file, and relevant info on the part and it's uses.
 
-### <s>BOB-09056_MuxBreakout.pdf</s>
+### BOB-09056_MuxBreakout.pdf
   * Basic description of the analog multiplexer breakout board.
   * Will be used to select which photodiode should be read by the satellite. Greatly reduces number of pins required for measurement readings.
 
-### BPD-BQDA34-1.pdf
+### <s>BPD-BQDA34-1.pdf</s>
   * Full datasheet of the photodiode.
   * Note, that this photodiode is no longer being used for development.
 
